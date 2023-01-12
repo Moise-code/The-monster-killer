@@ -12,4 +12,17 @@ const healBtn = document.querySelector('#heal-btn')
 const logBtn = document.querySelector('#log-btn')
 
 // function to adjust the healthbars.
+const adjustHealthBars = (maxLife) =>{
+  monsterHealthBar.max = maxLife;
+  monsterHealthBar.value = maxLife;
+  playerHealthBar.max = maxLife
+  playerHealthBar.value = maxLife;
+}
 
+// function to deal monster damage
+
+const dealmonsterDamage = (damage) =>{
+  const dealDamage = Math.random() * damage;
+  monsterHealthBar.value = +monsterHealthBar.value - dealDamage;
+  return dealDamage;
+}
