@@ -20,7 +20,6 @@ function attackHandler() {
     alert('the monster killed you. sorry you lost the game')
   }
   monsterPercentReduce(monsterPercentage); 
-  monsterPosition = monsterPerntReduce('damage * monsterAttack * 4')
 }
 
 attackBtn.addEventListener('click', attackHandler);
