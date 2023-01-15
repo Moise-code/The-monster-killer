@@ -20,12 +20,12 @@ function endRound() {
 
   if (currentPlayerHealth <= 0 && hasBonusLife) {
 
-hasBonusLife = false;
-removeBonusLife();
-currentMonsterHealth = initialPlayerHealth;
-setPlayerHealth(currentPlayerHealth);
-alert('you would be dead but your bonus life recovered you.');
-
+    hasBonusLife = false;
+    removeBonusLife();
+    currentMonsterHealth = initialPlayerHealth;
+    setPlayerHealth(initialPlayerHealth);
+    alert('you would be dead but your bonus life recovered you.');
+    
   }
   if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
 
