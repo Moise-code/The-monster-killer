@@ -32,7 +32,7 @@ let hasBonusLife = true;
 
 adjustHealthBars(chosenMaxLife);
 
-function writeToLog(ev, val,targ,monsterHealth, playerHealth){
+function writeToLog(ev, val,monsterHealth, playerHealth){
 
 let logEntry;
 if(ev === LOG_EVENT_PLAYER_ATTACK){
@@ -43,7 +43,7 @@ if(ev === LOG_EVENT_PLAYER_ATTACK){
     finalMonsterHealth : monsterHealth,
     finalPlayerHealth : playerHealth
   };
-  battleLog.push(logEntry);
+
 
 } else if(ev === LOG_EVENT_PLAYER_STRONG_ATTACK){
   logEntry = {
@@ -53,9 +53,35 @@ if(ev === LOG_EVENT_PLAYER_ATTACK){
     finalMonsterHealth : monsterHealth,
     finalPlayerHealth : playerHealth
   }
-  }
-}
 
+
+  } else if(ev === LOG_EVENT_MONSTER_ATTACK){
+    logEntry = {
+    event : ev,
+    value : val,
+    target : 'PLAYER',
+    finalMonsterHealth : monsterHealth,
+    finalPlayerHealth : playerHealth
+    }
+  } else if(ev === LOG_EVENT_PLAYER_HEAL){
+
+    logEntry = {
+      event : ev,
+      value : val,
+      target : 'PLAYER',
+      finalMonsterHealth : monsterHealth,
+      finalPlayerHealth : playerHealth
+    }
+
+  } else if(ev === LOG_EVENT_GAME_OVER){
+    logEntry = {
+      event : ev,
+      value : val,
+      finalMonsterHealth : monsterHealth,
+      finalPlayerHealth : playerHealth
+    }
+  }
+  battleLog.push(logEntry);
 }
 
 function reset(){
