@@ -11,6 +11,11 @@ let hasBonusLife = true;
 
 adjustHealthBars(chosenMaxLife);
 
+function reset(){
+ currentMonsterHealth = chosenMaxLife;
+ currentPlayerHealth = chosenMaxLife;
+ resetGame(chosenMaxLife);
+}
 // attack ,omster function that we are going to call everywhere.
 
 function endRound() {
@@ -25,17 +30,21 @@ function endRound() {
     currentMonsterHealth = initialPlayerHealth;
     setPlayerHealth(initialPlayerHealth);
     alert('you would be dead but your bonus life recovered you.');
-    
+     
   }
   if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
 
-    alert('you won the Game cop')
+    alert('you won the Game cop');
   } else if (currentPlayerHealth <= 0 && currentMonsterHealth > 0) {
     alert('the monster killed you. sorry you lost the game')
   } else if (currentPlayerHealth <= 0 && currentMonsterHealth <= 0) {
     alert('You both have a draw.')
   }
 
+  if(currentMonsterHealth <= 0 || currentPlayerHealth <= 0)
+  {
+      reset()
+  }
 }
 
 function attackMonster(mode) {
