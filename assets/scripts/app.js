@@ -14,15 +14,29 @@ const LOG_EVENT_MONSTER_ATTACK = "MONSTER_ATTACK";
 const LOG_EVENT_PLAYER_HEAL = "PLAYER_HEAL";
 const LOG_EVENT_GAME_OVER = "GAME_OVER";
 
-let battleLog = [];
 // promt show a dialog allow user to enter the value
-
-const enteredValuee = prompt("Maximum life for you and the monster", "100");
-let chosenMaxLife = parseInt(enteredValuee);
-
-if (isNaN(chosenMaxLife || chosenMaxLife <= 0)) {
-  chosenMaxLife = 100;
+let chosenMaxLife;
+function getMaxLifeValues() {
+  const enteredValuee = prompt("Maximum life for you and the monster", "100");
+  const parsedValue = parseInt(enteredValuee);
+  if (isNaN(chosenMaxLife || chosenMaxLife <= 0)) {
+    throw { message: "invalid user input not a number." };
+  }
+  return parsedValue;
 }
+
+try{
+  chosenMaxLife = getMaxLifeValues();
+
+} catch(error){
+  console.log(error);
+  chosenMaxLife = 100;
+  alert('you entered something wrong and the number you have entered is wrong.')
+} finally{
+  
+}
+
+let battleLog = [];
 
 let currentMonsterHealth = chosenMaxLife;
 let currentPlayerHealth = chosenMaxLife;
@@ -191,6 +205,17 @@ function healPlayerHandler() {
 }
 
 function printLogHandler() {
+  // lets use for loop
+  for (let i = 0; i < 3; i++) {
+    console.log("----------------");
+  }
+  for (const logEntry of battleLog) {
+    console.log(logEntry);
+    for (const key in logEntry) {
+      console.log(key);
+      console.log(logEntry["event"]);
+    }
+  }
   console.log(battleLog);
 }
 
@@ -212,8 +237,23 @@ logBtn.addEventListener("click", printLogHandler);
 // foa switch case;
 // switch (event) {
 
-// case 1 : 
+// case 1 :
 // solution;
 // break;
 // }
 // and thats it you can know from it.
+
+// sample on the loops//
+
+// for-of loop //
+/* for-of loop execute for every element in an array*/
+/* eg for(const el of array){
+  console.log(el)
+} */
+// for-in loop
+/* for-in loop just executes every key in the object.*/
+/* eg for (const key in obj){
+  console.log(key);
+  console.log(obj[key]);
+} */
+//
